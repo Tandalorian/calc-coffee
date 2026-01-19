@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0a0f;
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --text-faded: #505050;
+    --coffee-color: #ff6b6b;
+    --ratio-color: #c44569;
+    --water-color: #4ecdc4;
+    --timer-color: #ffa500;
+    --reset-color: #ff6b6b;
+    --border-gradient-start: #ff6b6b;
+    --border-gradient-end: #9b59b6;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 420px;
+    background: var(--bg-dark);
+    border: 2px solid;
+    border-image: linear-gradient(135deg, var(--border-gradient-start), var(--border-gradient-end)) 1;
+    border-radius: 20px;
+    padding: 30px 20px;
+    position: relative;
+}
+
+/* Logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+}
+
+/* Calculator Section */
+.calculator-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    gap: 10px;
+}
+
+.picker-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.picker-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+.picker-icon {
+    width: 28px;
+    height: 28px;
+    stroke-width: 2;
+}
+
+.coffee-icon {
+    color: var(--coffee-color);
+}
+
+.ratio-icon {
+    color: var(--ratio-color);
+}
+
+.water-icon {
+    color: var(--water-color);
+}
+
+.picker-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.number-picker {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    margin: 10px 0;
+}
+
+.picker-numbers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.picker-number {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-faded);
+    transition: all 0.3s ease;
+    user-select: none;
+    position: relative;
+}
+
+.picker-number.active {
+    font-size: 32px;
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.picker-number:not(.active) {
+    opacity: 0.3;
+    transform: scale(0.85);
+}
+
+.picker-unit {
+    font-size: 10px;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+.operator {
+    font-size: 20px;
+    color: var(--text-secondary);
+    align-self: center;
+    margin-top: 60px;
+    font-weight: 300;
+}
+
+/* Timer Section */
+.timer-section {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 25px;
+}
+
+.timer-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.timer-icon {
+    width: 18px;
+    height: 18px;
+    color: var(--timer-color);
+    stroke-width: 2;
+}
+
+.timer-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--timer-color);
+    text-transform: uppercase;
+}
+
+.timer-display {
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+}
+
+.timer-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.timer-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: 2px solid;
+    background: transparent;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.timer-btn svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+}
+
+.reset-btn {
+    border-color: var(--reset-color);
+    color: var(--reset-color);
+}
+
+.reset-btn:hover {
+    background: var(--reset-color);
+    color: var(--bg-dark);
+}
+
+.pause-btn {
+    border-color: var(--timer-color);
+    color: var(--timer-color);
+}
+
+.pause-btn:hover {
+    background: var(--timer-color);
+    color: var(--bg-dark);
+}
+
+.timer-btn:active {
+    transform: scale(0.95);
+}
+
+/* Touch interactions */
+.number-picker {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .app-container {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+    
+    .timer-display {
+        font-size: 40px;
+        letter-spacing: 3px;
+    }
+    
+    .picker-number.active {
+        font-size: 28px;
+    }
+}
