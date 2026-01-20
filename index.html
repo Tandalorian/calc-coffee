@@ -16,14 +16,14 @@
     <div class="app-container">
         <!-- Logo -->
         <div class="logo-container">
-            <img src="http://localhost:3845/assets/ba3037e0ee0b919843d628fa5660254c0191f511.svg" alt="Logo" class="logo">
+            <img src="logo.svg" alt="Logo" class="logo">
         </div>
 
         <!-- Calculator Section -->
         <div class="calculator-section">
             <div class="picker-container">
                 <div class="picker-header">
-                    <img src="http://localhost:3845/assets/138ef42f74db6bb74d3fd3dc5da100578bad35d2.svg" alt="Coffee" class="picker-icon coffee-icon">
+                    <img src="icon-coffee.svg" alt="Coffee" class="picker-icon coffee-icon">
                     <span class="picker-label">Coffee</span>
                 </div>
                 <div class="number-picker" id="coffee-picker">
@@ -37,7 +37,7 @@
 
             <div class="picker-container">
                 <div class="picker-header">
-                    <img src="http://localhost:3845/assets/063f7f3fb55f94a062d2ef1090d5ea472c004bde.svg" alt="Ratio" class="picker-icon ratio-icon">
+                    <img src="icon-gear.svg" alt="Ratio" class="picker-icon ratio-icon">
                     <span class="picker-label">Ratio</span>
                 </div>
                 <div class="number-picker" id="ratio-picker">
@@ -51,7 +51,7 @@
 
             <div class="picker-container">
                 <div class="picker-header">
-                    <img src="http://localhost:3845/assets/72d0b23c10a39f51f4aad52e9e168afe24862f99.svg" alt="Water" class="picker-icon water-icon">
+                    <img src="icon-water.svg" alt="Water" class="picker-icon water-icon">
                     <span class="picker-label">Water</span>
                 </div>
                 <div class="number-picker" id="water-picker">
@@ -65,28 +65,32 @@
         <!-- Timer Section -->
         <div class="timer-section">
             <div class="timer-header">
-                <img src="http://localhost:3845/assets/6cab5b514f78d84395815cf94cbfb3b6a2fecb2b.svg" alt="Timer" class="timer-icon">
+                <img src="icon-timer.svg" alt="Timer" class="timer-icon">
                 <span class="timer-label">Timer</span>
             </div>
             
             <!-- Initial State: Slide to Start -->
             <div class="timer-slider" id="timer-slider">
                 <button class="timer-play-btn" id="timer-play-btn">
-                    <img src="http://localhost:3845/assets/477b18aaf64acf4753bda320a15d1fa3186d9d43.svg" alt="Play">
+                    <img src="icon-play.svg" alt="Play">
                 </button>
                 <div class="timer-slide-text">Slide to start</div>
             </div>
             
             <!-- Active State: Timer Display -->
             <div class="timer-active" id="timer-active" style="display: none;">
-                <div class="timer-display" id="timer-display"><span>00</span><span class="colon"> : </span><span>00</span><span class="colon"> : </span><span>00</span></div>
+                <div class="timer-display" id="timer-display">
+                    <span class="timer-minutes" id="timer-minutes">00</span>
+                    <span class="timer-colon">:</span>
+                    <span class="timer-seconds" id="timer-seconds">00</span>
+                </div>
                 <div class="timer-controls">
                     <button class="timer-btn reset-btn" id="reset-btn">
-                        <img src="http://localhost:3845/assets/b3f6ff0552ba67383ddaea69927427449b7cbd35.svg" alt="Reset">
+                        <img src="icon-reset.svg" alt="Reset">
                         <span>Reset</span>
                     </button>
                     <button class="timer-btn pause-btn" id="pause-btn">
-                        <img src="http://localhost:3845/assets/3644b6dfdbf8ec22ff5e260abfd7063345212882.svg" alt="Pause">
+                        <img src="icon-pause.svg" alt="Pause">
                         <span>Pause</span>
                     </button>
                 </div>

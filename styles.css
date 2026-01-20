@@ -24,6 +24,9 @@
     --font-size-m: 24px;
     --font-size-l: 32px;
     --letter-space-m: 4px;
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 body {
@@ -31,24 +34,38 @@ body {
     background: var(--bg);
     color: var(--creme);
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: var(--gap-xl);
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
 }
 
 .app-container {
     width: 100%;
-    max-width: 420px;
+    min-height: 100vh;
     background: var(--bg);
     border: 2px solid var(--yellow);
-    border-radius: 48px;
+    border-radius: 0;
     padding: var(--gap-xl);
     position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--gap-xl);
+    transition: all var(--transition-base);
+    box-sizing: border-box;
+}
+
+/* Add rounded corners only on mobile/tablet */
+@media (min-width: 421px) {
+    .app-container {
+        max-width: 420px;
+        margin: 0 auto;
+        border-radius: 48px;
+        min-height: auto;
+    }
+    
+    body {
+        padding: var(--gap-xl);
+    }
 }
 
 /* Logo */
@@ -57,12 +74,18 @@ body {
     justify-content: center;
     align-items: center;
     flex: 1 0 0;
-    min-height: 0;
+    min-height: 200px;
+    transition: transform var(--transition-base);
+}
+
+.logo-container:hover {
+    transform: scale(1.05);
 }
 
 .logo {
     width: 59.862px;
     height: 87.072px;
+    transition: opacity var(--transition-base);
 }
 
 /* Calculator Section */
@@ -71,6 +94,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     gap: var(--gap-s);
+    transition: all var(--transition-smooth);
 }
 
 .picker-container {
@@ -79,6 +103,11 @@ body {
     flex-direction: column;
     align-items: center;
     gap: var(--gap-m);
+    transition: transform var(--transition-base);
+}
+
+.picker-container:hover {
+    transform: translateY(-2px);
 }
 
 .picker-header {
@@ -91,6 +120,12 @@ body {
 .picker-icon {
     width: 16px;
     height: 16px;
+    transition: transform var(--transition-base), opacity var(--transition-base);
+}
+
+.picker-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
 }
 
 .coffee-icon {
@@ -112,6 +147,7 @@ body {
     letter-spacing: var(--letter-space-m);
     text-transform: uppercase;
     line-height: 0;
+    transition: color var(--transition-base);
 }
 
 .picker-container:nth-child(1) .picker-label {
@@ -134,6 +170,7 @@ body {
     border-radius: var(--radius-m);
     overflow: hidden;
     background: linear-gradient(to bottom, var(--bg) 0%, rgba(19, 23, 31, 0) 50%, var(--bg) 100%);
+    transition: height var(--transition-smooth), border-color var(--transition-base);
 }
 
 #water-picker {
@@ -142,16 +179,26 @@ body {
 
 .picker-numbers {
     position: absolute;
-    top: 50%;
-    left: calc(50% + 0.33px);
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 250px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.picker-numbers::-webkit-scrollbar {
+    display: none;
 }
 
 .picker-number {
@@ -160,18 +207,27 @@ body {
     font-size: var(--font-size-m);
     letter-spacing: var(--letter-space-m);
     text-transform: uppercase;
-    line-height: 0;
+    line-height: 1;
     color: var(--surface-raised);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     user-select: none;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 50px;
+    min-height: 50px;
+    width: 100%;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    scroll-snap-align: center;
+    cursor: pointer;
 }
 
 .picker-number.active {
     font-size: var(--font-size-l);
     color: var(--creme);
+    font-weight: 500;
 }
 
 .picker-overlay {
@@ -179,6 +235,7 @@ body {
     inset: 0 -0.42% 0 0.42%;
     background: linear-gradient(to bottom, var(--bg) 0%, rgba(19, 23, 31, 0) 50%, var(--bg) 100%);
     pointer-events: none;
+    transition: border var(--transition-base);
 }
 
 .picker-unit {
@@ -189,6 +246,7 @@ body {
     text-transform: uppercase;
     line-height: 0;
     color: var(--surface-lower);
+    transition: color var(--transition-base);
 }
 
 .operator {
@@ -204,6 +262,11 @@ body {
     align-items: flex-end;
     width: 8px;
     line-height: normal;
+    transition: opacity var(--transition-base);
+}
+
+.operator:hover {
+    opacity: 0.7;
 }
 
 /* Timer Section */
@@ -223,6 +286,11 @@ body {
 .timer-icon {
     width: 16px;
     height: 16px;
+    transition: transform var(--transition-base);
+}
+
+.timer-icon:hover {
+    transform: rotate(15deg);
 }
 
 .timer-label {
@@ -233,6 +301,7 @@ body {
     text-transform: uppercase;
     line-height: 0;
     color: var(--yellow);
+    transition: color var(--transition-base);
 }
 
 /* Timer Initial State */
@@ -245,6 +314,8 @@ body {
     justify-content: space-between;
     padding: 0;
     background: transparent;
+    transition: all var(--transition-base);
+    overflow: hidden;
 }
 
 .timer-play-btn {
@@ -259,11 +330,28 @@ body {
     cursor: pointer;
     padding: 0;
     flex-shrink: 0;
+    transition: all var(--transition-base);
+    position: relative;
+    z-index: 1;
+}
+
+.timer-play-btn:hover {
+    background: rgba(227, 159, 97, 0.1);
+    transform: scale(1.05);
+}
+
+.timer-play-btn:active {
+    transform: scale(0.95);
 }
 
 .timer-play-btn img {
     width: 16px;
     height: 16px;
+    transition: transform var(--transition-base);
+}
+
+.timer-play-btn:hover img {
+    transform: scale(1.1);
 }
 
 .timer-slide-text {
@@ -276,34 +364,56 @@ body {
     text-align: center;
     color: var(--creme);
     line-height: 18px;
+    transition: opacity var(--transition-base);
 }
 
 /* Timer Active State */
 .timer-active {
-    border: var(--border-s) solid var(--blue);
+    border: var(--border-s) solid var(--yellow);
     border-radius: var(--radius-m);
     padding: var(--font-size-l) var(--gap-xl);
     display: flex;
     flex-direction: column;
     gap: var(--gap-xl);
     align-items: center;
+    transition: opacity var(--transition-base), transform var(--transition-base);
 }
 
 .timer-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-s);
+    text-align: center;
+    transition: transform var(--transition-base);
+}
+
+.timer-display:hover {
+    transform: scale(1.02);
+}
+
+.timer-minutes,
+.timer-seconds {
     font-family: 'JetBrains Mono', monospace;
     font-weight: 500;
-    font-size: 48px;
+    font-size: 64px;
     letter-spacing: var(--letter-space-m);
     text-transform: uppercase;
     color: var(--creme);
-    line-height: 0;
-    text-align: center;
-    width: 259px;
+    line-height: 1;
+    display: inline-block;
 }
 
-.timer-display .colon {
+.timer-colon {
+    font-family: 'JetBrains Mono', monospace;
     font-weight: 700;
+    font-size: 64px;
+    letter-spacing: var(--letter-space-m);
+    text-transform: uppercase;
     color: var(--surface-lower);
+    line-height: 1;
+    display: inline-block;
+    transition: color var(--transition-base);
 }
 
 .timer-controls {
@@ -324,7 +434,7 @@ body {
     background: transparent;
     border-radius: var(--radius-m);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--transition-base);
     font-family: 'JetBrains Mono', monospace;
     font-weight: 500;
     font-size: var(--font-size-s);
@@ -333,9 +443,23 @@ body {
     line-height: 18px;
 }
 
+.timer-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.timer-btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
 .timer-btn img {
     width: 16px;
     height: 16px;
+    transition: transform var(--transition-base);
+}
+
+.timer-btn:hover img {
+    transform: scale(1.1);
 }
 
 .reset-btn {
@@ -343,23 +467,45 @@ body {
     color: var(--orange);
 }
 
+.reset-btn:hover {
+    background: rgba(223, 108, 103, 0.1);
+}
+
 .pause-btn {
     border-color: var(--yellow);
     color: var(--yellow);
 }
 
-.timer-btn:active {
-    transform: scale(0.95);
+.pause-btn:hover {
+    background: rgba(227, 159, 97, 0.1);
 }
 
-/* When timer is active, reduce picker heights */
+/* When timer is active, reduce picker heights and adjust colors */
 body.timer-active .number-picker {
     height: 100px;
     border-color: var(--surface-lower);
 }
 
+body.timer-active .picker-numbers {
+    min-height: 100px;
+}
+
 body.timer-active .picker-overlay {
     border: var(--border-s) solid var(--surface-lower);
+}
+
+body.timer-active .calculator-section {
+    opacity: 0.7;
+}
+
+/* Change picker label and icon colors when timer is active */
+body.timer-active .picker-label {
+    color: var(--surface-raised) !important;
+}
+
+body.timer-active .picker-icon {
+    opacity: 0.6;
+    filter: brightness(0.7);
 }
 
 /* Touch interactions */
@@ -372,10 +518,12 @@ body.timer-active .picker-overlay {
 @media (max-width: 480px) {
     .app-container {
         padding: var(--gap-m);
-        border-radius: 32px;
+        border-radius: 0;
     }
     
-    .timer-display {
-        font-size: 40px;
+    .timer-minutes,
+    .timer-seconds,
+    .timer-colon {
+        font-size: 48px;
     }
 }
