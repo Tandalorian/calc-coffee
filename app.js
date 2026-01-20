@@ -280,6 +280,7 @@ class CoffeeTimer {
             }
             
             document.body.classList.add('timer-active');
+            document.querySelector('.app-container').classList.add('active');
             this.isSliding = false;
         }, 400);
     }
@@ -331,6 +332,7 @@ class CoffeeTimer {
             }
             
             document.body.classList.remove('timer-active');
+            document.querySelector('.app-container').classList.remove('active');
             this.pauseBtn.querySelector('span').textContent = 'Pause';
         }, 300);
     }

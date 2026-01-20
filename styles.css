@@ -54,8 +54,7 @@ body {
     width: 100%;
     height: 100vh;
     background: var(--bg);
-    border: 2px solid;
-    border-image: linear-gradient(135deg, var(--yellow), var(--orange), var(--pink)) 1;
+    border: 2px solid var(--blue);
     padding: var(--gap-xl);
     position: relative;
     display: flex;
@@ -66,6 +65,8 @@ body {
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+
 
 /* ===================================
    Responsive Design
@@ -85,9 +86,10 @@ body {
         height: auto;
         max-height: calc(100vh - 64px);
         border-radius: 48px;
-        border: 2px solid var(--yellow);
+        border: 2px solid var(--blue);
         border-image: none;
     }
+    
 }
 
 /* ===================================
@@ -99,9 +101,12 @@ body {
     justify-content: center;
     align-items: center;
     flex: 1 0 0;
-    min-height: 200px;
+    flex-direction: column;
+    min-height: 100px;
     transition: transform var(--transition-base);
 }
+
+
 
 .logo-container:hover {
     transform: scale(1.05);
@@ -409,7 +414,7 @@ body {
 }
 
 /* Timer Active State */
-.timer-active {
+#timer-active {
     border: var(--border-s) solid var(--yellow);
     border-radius: var(--radius-m);
     padding: var(--font-size-l) var(--gap-xl);
