@@ -4,7 +4,17 @@ const urlsToCache = [
   './index.html',
   './styles.css',
   './app.js',
-  './manifest.json'
+  './manifest.json',
+  './logo.svg',
+  './icon-coffee.svg',
+  './icon-gear.svg',
+  './icon-water.svg',
+  './icon-timer.svg',
+  './icon-play.svg',
+  './icon-pause.svg',
+  './icon-reset.svg',
+  './icon-192.png',
+  './icon-512.png'
 ];
 
 // Install event - cache resources
