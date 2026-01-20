@@ -5,52 +5,64 @@
 }
 
 :root {
-    --bg-dark: #0a0a0f;
-    --text-primary: #ffffff;
-    --text-secondary: #a0a0a0;
-    --text-faded: #505050;
-    --coffee-color: #ff6b6b;
-    --ratio-color: #c44569;
-    --water-color: #4ecdc4;
-    --timer-color: #ffa500;
-    --reset-color: #ff6b6b;
-    --border-gradient-start: #ff6b6b;
-    --border-gradient-end: #9b59b6;
+    --bg: #13171f;
+    --yellow: #e39f61;
+    --orange: #df6c67;
+    --pink: #da74a9;
+    --blue: #5a97e0;
+    --creme: #ded9d3;
+    --surface-raised: #556790;
+    --surface-lower: #35405a;
+    --border-s: 1px;
+    --radius-m: 12px;
+    --gap-s: 8px;
+    --gap-m: 16px;
+    --gap-l: 24px;
+    --gap-xl: 32px;
+    --font-size-xs: 12px;
+    --font-size-s: 16px;
+    --font-size-m: 24px;
+    --font-size-l: 32px;
+    --letter-space-m: 4px;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    background: var(--bg-dark);
-    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--bg);
+    color: var(--creme);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: var(--gap-xl);
     overflow-x: hidden;
 }
 
 .app-container {
     width: 100%;
     max-width: 420px;
-    background: var(--bg-dark);
-    border: 2px solid;
-    border-image: linear-gradient(135deg, var(--border-gradient-start), var(--border-gradient-end)) 1;
-    border-radius: 20px;
-    padding: 30px 20px;
+    background: var(--bg);
+    border: 2px solid var(--yellow);
+    border-radius: 48px;
+    padding: var(--gap-xl);
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xl);
 }
 
 /* Logo */
 .logo-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    align-items: center;
+    flex: 1 0 0;
+    min-height: 0;
 }
 
 .logo {
-    width: 60px;
-    height: 60px;
+    width: 59.862px;
+    height: 87.072px;
 }
 
 /* Calculator Section */
@@ -58,8 +70,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 40px;
-    gap: 10px;
+    gap: var(--gap-s);
 }
 
 .picker-container {
@@ -67,188 +78,288 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: var(--gap-m);
 }
 
 .picker-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
-    gap: 8px;
+    gap: var(--gap-m);
 }
 
 .picker-icon {
-    width: 28px;
-    height: 28px;
-    stroke-width: 2;
+    width: 16px;
+    height: 16px;
 }
 
 .coffee-icon {
-    color: var(--coffee-color);
+    filter: none;
 }
 
 .ratio-icon {
-    color: var(--ratio-color);
+    filter: none;
 }
 
 .water-icon {
-    color: var(--water-color);
+    filter: none;
 }
 
 .picker-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: var(--font-size-s);
+    letter-spacing: var(--letter-space-m);
     text-transform: uppercase;
+    line-height: 0;
+}
+
+.picker-container:nth-child(1) .picker-label {
+    color: var(--orange);
+}
+
+.picker-container:nth-child(3) .picker-label {
+    color: var(--pink);
+}
+
+.picker-container:nth-child(5) .picker-label {
+    color: var(--blue);
 }
 
 .number-picker {
     position: relative;
-    width: 100%;
-    height: 200px;
+    width: 80px;
+    height: 250px;
+    border: var(--border-s) solid var(--blue);
+    border-radius: var(--radius-m);
     overflow: hidden;
-    margin: 10px 0;
+    background: linear-gradient(to bottom, var(--bg) 0%, rgba(19, 23, 31, 0) 50%, var(--bg) 100%);
+}
+
+#water-picker {
+    width: 130px;
 }
 
 .picker-numbers {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 0.33px);
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    height: 250px;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform;
 }
 
 .picker-number {
-    height: 50px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: var(--font-size-m);
+    letter-spacing: var(--letter-space-m);
+    text-transform: uppercase;
+    line-height: 0;
+    color: var(--surface-raised);
+    transition: all 0.3s ease;
+    user-select: none;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
-    font-weight: 600;
-    color: var(--text-faded);
-    transition: all 0.3s ease;
-    user-select: none;
-    position: relative;
 }
 
 .picker-number.active {
-    font-size: 32px;
-    color: var(--text-primary);
-    font-weight: 700;
+    font-size: var(--font-size-l);
+    color: var(--creme);
 }
 
-.picker-number:not(.active) {
-    opacity: 0.3;
-    transform: scale(0.85);
+.picker-overlay {
+    position: absolute;
+    inset: 0 -0.42% 0 0.42%;
+    background: linear-gradient(to bottom, var(--bg) 0%, rgba(19, 23, 31, 0) 50%, var(--bg) 100%);
+    pointer-events: none;
 }
 
 .picker-unit {
-    font-size: 10px;
-    color: var(--text-secondary);
-    letter-spacing: 0.5px;
-    margin-top: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-space-m);
     text-transform: uppercase;
+    line-height: 0;
+    color: var(--surface-lower);
 }
 
 .operator {
-    font-size: 20px;
-    color: var(--text-secondary);
-    align-self: center;
-    margin-top: 60px;
-    font-weight: 300;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: var(--font-size-xs);
+    letter-spacing: var(--letter-space-m);
+    text-transform: uppercase;
+    color: var(--surface-lower);
+    align-self: flex-end;
+    height: 42px;
+    display: flex;
+    align-items: flex-end;
+    width: 8px;
+    line-height: normal;
 }
 
 /* Timer Section */
 .timer-section {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-m);
+    width: 100%;
 }
 
 .timer-header {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 20px;
+    gap: var(--gap-s);
 }
 
 .timer-icon {
-    width: 18px;
-    height: 18px;
-    color: var(--timer-color);
-    stroke-width: 2;
+    width: 16px;
+    height: 16px;
 }
 
 .timer-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: var(--timer-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: var(--font-size-s);
+    letter-spacing: var(--letter-space-m);
     text-transform: uppercase;
+    line-height: 0;
+    color: var(--yellow);
+}
+
+/* Timer Initial State */
+.timer-slider {
+    border: var(--border-s) solid var(--blue);
+    border-radius: var(--radius-m);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    background: transparent;
+}
+
+.timer-play-btn {
+    border: var(--border-s) solid var(--yellow);
+    border-radius: var(--radius-m);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.timer-play-btn img {
+    width: 16px;
+    height: 16px;
+}
+
+.timer-slide-text {
+    flex: 1 0 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: var(--font-size-s);
+    letter-spacing: var(--letter-space-m);
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--creme);
+    line-height: 18px;
+}
+
+/* Timer Active State */
+.timer-active {
+    border: var(--border-s) solid var(--blue);
+    border-radius: var(--radius-m);
+    padding: var(--font-size-l) var(--gap-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-xl);
+    align-items: center;
 }
 
 .timer-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
     font-size: 48px;
-    font-weight: 300;
-    letter-spacing: 4px;
+    letter-spacing: var(--letter-space-m);
+    text-transform: uppercase;
+    color: var(--creme);
+    line-height: 0;
     text-align: center;
-    margin-bottom: 25px;
-    font-variant-numeric: tabular-nums;
-    color: var(--text-primary);
-    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+    width: 259px;
+}
+
+.timer-display .colon {
+    font-weight: 700;
+    color: var(--surface-lower);
 }
 
 .timer-controls {
     display: flex;
-    gap: 15px;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: var(--gap-s);
 }
 
 .timer-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    border: 2px solid;
+    justify-content: center;
+    gap: var(--gap-s);
+    padding: var(--gap-m) var(--gap-l);
+    border: var(--border-s) solid;
     background: transparent;
-    border-radius: 8px;
-    color: var(--text-primary);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    border-radius: var(--radius-m);
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: var(--font-size-s);
+    letter-spacing: var(--letter-space-m);
     text-transform: uppercase;
+    line-height: 18px;
 }
 
-.timer-btn svg {
+.timer-btn img {
     width: 16px;
     height: 16px;
-    stroke-width: 2;
 }
 
 .reset-btn {
-    border-color: var(--reset-color);
-    color: var(--reset-color);
-}
-
-.reset-btn:hover {
-    background: var(--reset-color);
-    color: var(--bg-dark);
+    border-color: var(--orange);
+    color: var(--orange);
 }
 
 .pause-btn {
-    border-color: var(--timer-color);
-    color: var(--timer-color);
-}
-
-.pause-btn:hover {
-    background: var(--timer-color);
-    color: var(--bg-dark);
+    border-color: var(--yellow);
+    color: var(--yellow);
 }
 
 .timer-btn:active {
     transform: scale(0.95);
+}
+
+/* When timer is active, reduce picker heights */
+body.timer-active .number-picker {
+    height: 100px;
+    border-color: var(--surface-lower);
+}
+
+body.timer-active .picker-overlay {
+    border: var(--border-s) solid var(--surface-lower);
 }
 
 /* Touch interactions */
@@ -260,16 +371,11 @@ body {
 /* Responsive */
 @media (max-width: 480px) {
     .app-container {
-        padding: 20px 15px;
-        border-radius: 15px;
+        padding: var(--gap-m);
+        border-radius: 32px;
     }
     
     .timer-display {
         font-size: 40px;
-        letter-spacing: 3px;
-    }
-    
-    .picker-number.active {
-        font-size: 28px;
     }
 }

@@ -4,99 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Coffee brewing calculator and timer">
-    <meta name="theme-color" content="#1a1a2e">
+    <meta name="theme-color" content="#13171f">
     <title>Calc Coffee</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
         <!-- Logo -->
         <div class="logo-container">
-            <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 20 C30 20, 20 30, 20 50 L20 70 C20 80, 25 85, 30 85 L70 85 C75 85, 80 80, 80 70 L80 50 C80 30, 70 20, 50 20 Z" 
-                      fill="none" stroke="#4a90e2" stroke-width="3"/>
-                <line x1="50" y1="50" x2="50" y2="30" stroke="#4a90e2" stroke-width="2" stroke-linecap="round"/>
-                <line x1="50" y1="50" x2="65" y2="50" stroke="#4a90e2" stroke-width="2" stroke-linecap="round"/>
-            </svg>
+            <img src="http://localhost:3845/assets/ba3037e0ee0b919843d628fa5660254c0191f511.svg" alt="Logo" class="logo">
         </div>
 
         <!-- Calculator Section -->
         <div class="calculator-section">
             <div class="picker-container">
                 <div class="picker-header">
-                    <svg class="picker-icon coffee-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z"/>
-                        <line x1="6" y1="1" x2="6" y2="4"/>
-                        <line x1="10" y1="1" x2="10" y2="4"/>
-                        <line x1="14" y1="1" x2="14" y2="4"/>
-                    </svg>
-                    <span class="picker-label">COFFEE</span>
+                    <img src="http://localhost:3845/assets/138ef42f74db6bb74d3fd3dc5da100578bad35d2.svg" alt="Coffee" class="picker-icon coffee-icon">
+                    <span class="picker-label">Coffee</span>
                 </div>
                 <div class="number-picker" id="coffee-picker">
                     <div class="picker-numbers" id="coffee-numbers"></div>
+                    <div class="picker-overlay"></div>
                 </div>
-                <div class="picker-unit">GRAMS</div>
+                <div class="picker-unit">Grams</div>
             </div>
 
-            <div class="operator">×</div>
+            <div class="operator">x</div>
 
             <div class="picker-container">
                 <div class="picker-header">
-                    <svg class="picker-icon ratio-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/>
-                    </svg>
-                    <span class="picker-label">RATIO</span>
+                    <img src="http://localhost:3845/assets/063f7f3fb55f94a062d2ef1090d5ea472c004bde.svg" alt="Ratio" class="picker-icon ratio-icon">
+                    <span class="picker-label">Ratio</span>
                 </div>
                 <div class="number-picker" id="ratio-picker">
                     <div class="picker-numbers" id="ratio-numbers"></div>
+                    <div class="picker-overlay"></div>
                 </div>
-                <div class="picker-unit">1:X</div>
+                <div class="picker-unit">1:x</div>
             </div>
 
             <div class="operator">=</div>
 
             <div class="picker-container">
                 <div class="picker-header">
-                    <svg class="picker-icon water-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
-                    </svg>
-                    <span class="picker-label">WATER</span>
+                    <img src="http://localhost:3845/assets/72d0b23c10a39f51f4aad52e9e168afe24862f99.svg" alt="Water" class="picker-icon water-icon">
+                    <span class="picker-label">Water</span>
                 </div>
                 <div class="number-picker" id="water-picker">
                     <div class="picker-numbers" id="water-numbers"></div>
+                    <div class="picker-overlay"></div>
                 </div>
-                <div class="picker-unit">GRAMS</div>
+                <div class="picker-unit">Grams</div>
             </div>
         </div>
 
         <!-- Timer Section -->
         <div class="timer-section">
             <div class="timer-header">
-                <svg class="timer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                <span class="timer-label">TIMER</span>
+                <img src="http://localhost:3845/assets/6cab5b514f78d84395815cf94cbfb3b6a2fecb2b.svg" alt="Timer" class="timer-icon">
+                <span class="timer-label">Timer</span>
             </div>
-            <div class="timer-display" id="timer-display">00 : 00 . 00</div>
-            <div class="timer-controls">
-                <button class="timer-btn reset-btn" id="reset-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <polyline points="23 4 23 10 17 10"/>
-                        <polyline points="1 20 1 14 7 14"/>
-                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
-                    </svg>
-                    <span>RESET</span>
+            
+            <!-- Initial State: Slide to Start -->
+            <div class="timer-slider" id="timer-slider">
+                <button class="timer-play-btn" id="timer-play-btn">
+                    <img src="http://localhost:3845/assets/477b18aaf64acf4753bda320a15d1fa3186d9d43.svg" alt="Play">
                 </button>
-                <button class="timer-btn pause-btn" id="pause-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <rect x="6" y="4" width="4" height="16"/>
-                        <rect x="14" y="4" width="4" height="16"/>
-                    </svg>
-                    <span>PAUSE</span>
-                </button>
+                <div class="timer-slide-text">Slide to start</div>
+            </div>
+            
+            <!-- Active State: Timer Display -->
+            <div class="timer-active" id="timer-active" style="display: none;">
+                <div class="timer-display" id="timer-display"><span>00</span><span class="colon"> : </span><span>00</span><span class="colon"> : </span><span>00</span></div>
+                <div class="timer-controls">
+                    <button class="timer-btn reset-btn" id="reset-btn">
+                        <img src="http://localhost:3845/assets/b3f6ff0552ba67383ddaea69927427449b7cbd35.svg" alt="Reset">
+                        <span>Reset</span>
+                    </button>
+                    <button class="timer-btn pause-btn" id="pause-btn">
+                        <img src="http://localhost:3845/assets/3644b6dfdbf8ec22ff5e260abfd7063345212882.svg" alt="Pause">
+                        <span>Pause</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
