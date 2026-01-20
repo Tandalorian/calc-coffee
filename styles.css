@@ -42,17 +42,20 @@ body {
     background: var(--bg);
     color: var(--creme);
     min-height: 100vh;
+    height: 100vh;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
 }
 
 .app-container {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background: var(--bg);
-    border: 2px solid var(--yellow);
-    border-radius: 0;
+    border: 2px solid;
+    border-image: linear-gradient(135deg, var(--yellow), var(--orange), var(--pink)) 1;
     padding: var(--gap-xl);
     position: relative;
     display: flex;
@@ -60,23 +63,30 @@ body {
     gap: var(--gap-xl);
     transition: all var(--transition-base);
     box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* ===================================
    Responsive Design
    =================================== */
 
-/* Add rounded corners on larger screens */
+/* Desktop: centered container with rounded corners */
 @media (min-width: 421px) {
-    .app-container {
-        max-width: 420px;
-        margin: 0 auto;
-        border-radius: 48px;
-        min-height: auto;
-    }
-    
     body {
         padding: var(--gap-xl);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .app-container {
+        max-width: 420px;
+        height: auto;
+        max-height: calc(100vh - 64px);
+        border-radius: 48px;
+        border: 2px solid var(--yellow);
+        border-image: none;
     }
 }
 
@@ -347,7 +357,6 @@ body {
     padding: 0;
     background: transparent;
     transition: all var(--transition-base);
-    overflow: hidden;
 }
 
 .timer-play-btn {
@@ -358,22 +367,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
-    cursor: pointer;
+    background: var(--bg);
+    cursor: grab;
     padding: 0;
     flex-shrink: 0;
     transition: all var(--transition-base);
     position: relative;
     z-index: 1;
+    left:-1px;
+    touch-action: none;
+    user-select: none;
 }
 
-.timer-play-btn:hover {
-    background: rgba(227, 159, 97, 0.1);
-    transform: scale(1.05);
-}
+
 
 .timer-play-btn:active {
-    transform: scale(0.95);
+    cursor: grabbing;
 }
 
 .timer-play-btn img {
@@ -525,10 +534,6 @@ body.timer-active .picker-numbers {
     min-height: 100px;
 }
 
-body.timer-active .picker-overlay {
-    border: var(--border-s) solid var(--surface-lower);
-}
-
 body.timer-active .calculator-section {
     opacity: 0.7;
 }
@@ -549,11 +554,10 @@ body.timer-active .picker-icon {
     -webkit-overflow-scrolling: touch;
 }
 
-/* Responsive */
+/* Mobile: adjust timer font size */
 @media (max-width: 480px) {
     .app-container {
         padding: var(--gap-m);
-        border-radius: 0;
     }
     
     .timer-minutes,

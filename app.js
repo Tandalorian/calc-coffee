@@ -189,9 +189,65 @@ class CoffeeTimer {
     }
     
     setupEventListeners() {
-        this.playBtn.addEventListener('click', () => this.slideAndStart());
         this.resetBtn.addEventListener('click', () => this.reset());
         this.pauseBtn.addEventListener('click', () => this.toggle());
+        
+        // Slide-to-start drag functionality
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        
+        const handleStart = (e) => {
+            if (this.isSliding || this.isRunning) return;
+            
+            isDragging = true;
+            startX = e.touches ? e.touches[0].clientX : e.clientX;
+            this.playBtn.style.transition = 'none';
+        };
+        
+        const handleMove = (e) => {
+            if (!isDragging) return;
+            
+            e.preventDefault();
+            currentX = e.touches ? e.touches[0].clientX : e.clientX;
+            const deltaX = currentX - startX;
+            
+            const sliderRect = this.slider.getBoundingClientRect();
+            const maxSlide = sliderRect.width - 80;
+            
+            // Constrain movement
+            const slideAmount = Math.max(0, Math.min(maxSlide, deltaX));
+            this.playBtn.style.transform = `translateX(${slideAmount}px)`;
+        };
+        
+        const handleEnd = (e) => {
+            if (!isDragging) return;
+            
+            isDragging = false;
+            const deltaX = currentX - startX;
+            const sliderRect = this.slider.getBoundingClientRect();
+            const maxSlide = sliderRect.width - 80;
+            
+            // If dragged more than 70% of the way, trigger start
+            if (deltaX > maxSlide * 0.7) {
+                this.slideAndStart();
+            } else {
+                // Snap back
+                this.playBtn.style.transition = 'transform 0.3s ease';
+                this.playBtn.style.transform = 'translateX(0)';
+            }
+        };
+        
+        // Mouse events
+        this.playBtn.addEventListener('mousedown', handleStart);
+        document.addEventListener('mousemove', handleMove);
+        document.addEventListener('mouseup', handleEnd);
+        
+        // Touch events
+        this.playBtn.addEventListener('touchstart', handleStart, { passive: false });
+        document.addEventListener('touchmove', handleMove, { passive: false });
+        document.addEventListener('touchend', handleEnd);
+        document.addEventListener('touchcancel', handleEnd);
     }
     
     slideAndStart() {
