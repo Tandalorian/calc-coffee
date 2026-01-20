@@ -1,7 +1,10 @@
 /**
- * Calc Coffee - PWA
+ * Calc Coffee - PWA v1.1.0
  * A lightweight coffee brewing calculator and timer
  */
+
+const APP_VERSION = '1.1.0';
+console.log(`%c☕ Calc Coffee v${APP_VERSION}`, 'font-size: 14px; font-weight: bold; color: #FFD700;');
 
 /* ===================================
    Coffee Calculator
